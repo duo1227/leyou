@@ -1,0 +1,11 @@
+server:
+  port: 10086  #本机测试集群配置方式：${port:8761} # 默认端口号
+spring:
+  application:
+    name: ly-registry
+eureka:
+  client:
+    service-url: # 配置Eureka服务地址，现在配置的是自己的服务地址，如果是集群，则用对方的服务地址
+      defaultZone: http://127.0.0.1:10086/eureka
+    fetch-registry: false # 是否拉取服务列表(true:拉取 false:不拉取) 拉取对方的服务列表
+    register-with-eureka: false # 是否注册到eureka(true:注册  false不注册) 注册到对方

@@ -1,0 +1,25 @@
+# 配置tomcat端口号
+server:
+  port: 8080
+spring:
+  application:
+    name: item-service  #应用名称(服务id)
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.13.111:3303/leyou?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: passw0rd
+mybatis:
+  type-aliases-package: com.leyou.item.entity
+  configuration:
+    map-underscore-to-camel-case: true #驼峰命名
+  mapper-locations: mapper/*.xml
+mapper:
+  wrap-keyword: "`{0}`"  #处理实体类属性名字是Mysql关键字的方法
+eureka:
+  client:
+    service-url: # Eureka服务地址(集群)
+      defaultZone: http://127.0.0.1:10086/eureka #集群配置方式：defaultZone: http://127.0.0.1:8761/eureka,http://127.0.0.1:8762/eureka
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true

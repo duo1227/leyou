@@ -1,0 +1,73 @@
+server:
+  port: 10010
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      #配置跨域
+      globalcors: # 配置默认的过滤器，对全部的路由有效
+        add-to-simple-url-handler-mapping: true
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://manage.leyou.com"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+            maxAge: 360000
+            allowedMethods:
+              - GET
+              - POST
+              - DELETE
+              - PUT
+              - OPTIONS
+              - HEAD
+      # 配置路由
+      routes:
+        #图片上传
+        - id: upload-service
+          uri: lb://upload-service
+          predicates:
+            - Path=/api/upload/**
+          filters:
+            - StripPrefix=2
+        # 路由id(可以随意写,一般用微服务id)
+        - id: item-service
+          # 路由到目标的服务地址(路由到哪一个微服务)
+          # uri: http://127.0.0.1:9001
+          # 配置面向服务的路由, lb表示负载均衡(从eureka中根据服务id获取服务实例)
+          uri: lb://item-service
+          # 配置路由断言：Path(路径断言)配置映射的路径
+          predicates:
+            - Path=/api/item/**
+          # 配置过滤器
+          filters:
+            - StripPrefix=2
+        #配置elasticsearch网关
+        - id: search-service
+          uri: lb://search-service
+          predicates:
+            - Path=/api/service/**
+          filters:
+            - StripPrefix=2
+eureka:
+  client:
+    service-url: # Eureka服务地址(集群)
+      defaultZone: http://localhost:10086/eureka #http://localhost:10086/eureka,http://localhost:10087/eureka
+    registry-fetch-interval-seconds: 5
+    instance-info-replication-interval-seconds: 5
+    initial-instance-info-replication-interval-seconds: 5
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000 # 熔断超时时长：6000ms
+ribbon:
+  ConnectTimeout: 1000 # ribbon链接超时时长
+  ReadTimeout: 2000 # ribbon读取超时时长
+  MaxAutoRetries: 0  # 当前服务重试次数
+  MaxAutoRetriesNextServer: 1 # 切换服务重试次数
+  OkToRetryOnAllOperations: false # 是否对所有的请求方式都重试，只对get请求重试
