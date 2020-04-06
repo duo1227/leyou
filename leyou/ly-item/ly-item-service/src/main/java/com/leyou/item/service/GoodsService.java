@@ -189,21 +189,6 @@ public class GoodsService {
         return BeanHelper.copyProperties(spuDetail,SpuDetailDTO.class);
     }
 
-    /**
-     * 根据spuId查询spu
-     * @param spuId
-     * @return
-     */
-    public SpuDTO querySpuBySpuId(Long spuId) {
-
-        Spu spu = spuMapper.selectByPrimaryKey(spuId);
-        if (spu == null){
-            throw new LyException(ExceptionEnum.GOODS_NOT_FOUND);
-        }
-
-        return BeanHelper.copyProperties(spu,SpuDTO.class);
-
-    }
 
 
     /**

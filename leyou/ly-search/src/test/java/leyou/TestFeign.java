@@ -1,9 +1,9 @@
 package leyou;
 
-import com.leyou.common.vo.PageResult;
+
+import com.leyou.LySearchApplication;
 import com.leyou.item.client.ItemClient;
 import com.leyou.item.dto.BrandDTO;
-import com.leyou.item.dto.SpuDTO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = LySearchApplication.class)
 public class TestFeign {
 
     @Autowired

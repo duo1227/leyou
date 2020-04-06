@@ -83,17 +83,6 @@ public class GoodsController {
     }
 
 
-    /**
-     * 根据spuId查询spu
-     * @param spuId
-     * @return
-     */
-    @GetMapping("/sku/of/spu")
-    public ResponseEntity<SpuDTO> querySpuBySpuId(@RequestParam("id") Long spuId){
-
-        SpuDTO spuDTO = goodsService.querySpuBySpuId(spuId);
-        return ResponseEntity.ok(spuDTO);
-    }
 
 
     /**
