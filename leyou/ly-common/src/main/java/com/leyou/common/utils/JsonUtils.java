@@ -10,15 +10,14 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author: 黑马程序员
- **/
+
 public class JsonUtils {
 
     public static final ObjectMapper mapper = new ObjectMapper();
 
     private static final Logger logger = LoggerFactory.getLogger(JsonUtils.class);
 
+    //能把一切对象，转换成字符串
     public static String toString(Object obj) {
         if (obj == null) {
             return null;
