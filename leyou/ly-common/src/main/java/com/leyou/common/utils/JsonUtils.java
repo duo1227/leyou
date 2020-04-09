@@ -51,6 +51,13 @@ public class JsonUtils {
         }
     }
 
+    /**
+     *
+     * @param json 需要转换的数据
+     * @param kClass key的类型.class  比如Long.class
+     * @param vClass value的类型.class 比如Object.class
+     * @return
+     */
     public static <K, V> Map<K, V> toMap(String json, Class<K> kClass, Class<V> vClass) {
         try {
             return mapper.readValue(json, mapper.getTypeFactory().constructMapType(Map.class, kClass, vClass));

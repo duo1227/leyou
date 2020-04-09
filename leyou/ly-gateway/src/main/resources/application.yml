@@ -11,7 +11,7 @@ spring:
         corsConfigurations:
           '[/**]':
             allowedOrigins:
-              - "http://manage.leyou.com"
+              - "http://manage.com.leyou.leyou.com"
             allowedHeaders:
               - "*"
             allowCredentials: true

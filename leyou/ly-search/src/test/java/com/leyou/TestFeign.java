@@ -1,7 +1,6 @@
-package leyou;
+package com.leyou;
 
 
-import com.leyou.LySearchApplication;
 import com.leyou.item.client.ItemClient;
 import com.leyou.item.dto.BrandDTO;
 import org.junit.Test;

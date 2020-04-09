@@ -3,7 +3,6 @@ package com.leyou.item.client;
 import com.leyou.common.vo.PageResult;
 import com.leyou.item.dto.*;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -69,9 +68,9 @@ public interface ItemClient {
 
     /**
      * 根据分类查询规格参数
-     * @param gid
-     * @param cid
-     * @param searching
+     * @param gid 主id
+     * @param cid 分类id
+     * @param searching 是否搜索
      * @return
      */
     @GetMapping("/spec/params")

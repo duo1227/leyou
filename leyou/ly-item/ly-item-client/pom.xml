@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>ly-item</artifactId>
-        <groupId>com.leyou</groupId>
+        <groupId>com.com.leyou.leyou</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -13,20 +13,22 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.leyou</groupId>
+            <groupId>com.com.leyou.leyou</groupId>
             <artifactId>ly-item-dto</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!--web-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
         </dependency>
+        <!--这个工程最后相当于一个jar包，不要导入feign的启动器，只需要核心的feign的依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-openfeign-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.leyou</groupId>
+            <groupId>com.com.leyou.leyou</groupId>
             <artifactId>ly-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
