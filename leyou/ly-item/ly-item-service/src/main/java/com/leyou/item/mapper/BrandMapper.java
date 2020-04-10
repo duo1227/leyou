@@ -1,13 +1,13 @@
 package com.leyou.item.mapper;
 
+import com.leyou.common.mapper.BaseMapper;
 import com.leyou.item.entity.Brand;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
-public interface BrandMapper extends Mapper<Brand> {
+public interface BrandMapper extends BaseMapper<Brand> {
 
     /**
      * 插入品牌分类中间表
@@ -25,4 +25,5 @@ public interface BrandMapper extends Mapper<Brand> {
      */
     @Select("SELECT b.* FROM tb_category_brand c INNER JOIN tb_brand b ON c.`brand_id` = b.`id` WHERE c.`category_id` = #{categoryId};")
     List<Brand> queryBrandListByCid(Long categoryId);
+
 }

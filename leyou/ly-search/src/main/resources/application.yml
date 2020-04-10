@@ -17,3 +17,7 @@ eureka:
   instance:
     prefer-ip-address: true
     ip-address: 127.0.0.1
+logging:
+  level:   # debug   info   warn   error
+    root: info
+    com.leyou: debug
