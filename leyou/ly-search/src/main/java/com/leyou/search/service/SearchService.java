@@ -346,7 +346,7 @@ public class SearchService {
         // 1、查询条件拼接
         boolQueryBuilder.must(QueryBuilders.matchQuery("all", searchRequest.getKey()).operator(Operator.AND));
         // 2、拼接过滤参数
-        Map<String, Object> filters = searchRequest.getFilter();
+        Map<String, Object> filters = searchRequest.getFilters();
         if(!CollectionUtils.isEmpty(filters)) {
             for (Map.Entry<String, Object> entry : filters.entrySet()) {
                 String key = entry.getKey();

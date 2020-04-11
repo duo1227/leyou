@@ -34,11 +34,11 @@ public class SearchRequest {
         return DEFAULT_SIZE;
     }
 
-    public Map<String, Object> getFilter() {
+    public Map<String, Object> getFilters() {
         return filters;
     }
 
-    public void setFilter(Map<String, Object> filter) {
-        this.filters = filter;
+    public void setFilters(Map<String, Object> filters) {
+        this.filters = filters;
     }
 }
