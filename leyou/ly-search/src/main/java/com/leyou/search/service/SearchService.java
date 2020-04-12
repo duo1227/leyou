@@ -75,7 +75,7 @@ public class SearchService {
         // 4.1 准备一个map接收规格参数
         Map<String, Object> specs = new HashMap<>();
         // 4.2 查询出用于搜索过滤的规格参数
-        List<SpecParamDTO> specParamDTOS = itemClient.querySpecParamByGid(null, spuDTO.getCid3(), true);
+        List<SpecParamDTO> specParamDTOS = itemClient.querySpecParam(null, spuDTO.getCid3(), true);
         // 4.3 查询出商品详情
         SpuDetailDTO spuDetailDTO = itemClient.querySpuDetailBySpuId(spuId);
         // 4.4 通用规格参数
@@ -263,7 +263,7 @@ public class SearchService {
      */
     private void addSpecParamFilter(Long categoryId, QueryBuilder builderSearchKey, Map<String, List<?>> filterMap) {
         // 2、通过分类的id去查询规格过滤参数：
-        List<SpecParamDTO> specParamDTOS = itemClient.querySpecParamByGid(null, categoryId, true);
+        List<SpecParamDTO> specParamDTOS = itemClient.querySpecParam(null, categoryId, true);
         // 3、我们创建es的原生查询构建器
         NativeSearchQueryBuilder queryBuilder = new NativeSearchQueryBuilder();
         queryBuilder.withSourceFilter(new FetchSourceFilter(new String[]{""}, null));

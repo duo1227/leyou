@@ -2,7 +2,6 @@ package com.leyou.item.controller;
 
 import com.leyou.item.dto.SpecGroupDTO;
 import com.leyou.item.dto.SpecParamDTO;
-import com.leyou.item.service.SpecParamService;
 import com.leyou.item.service.SpecService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +18,11 @@ public class SpecGroupController {
 
     @Autowired
     private SpecService specService;
-    @Autowired
-    private SpecParamService specParamService;
 
 
     /**
-     * 查询规格组
-     * @param id
+     * 查询分类Id规格组
+     * @param id 分类Id
      * @return
      */
     @GetMapping("/groups/of/category")
@@ -39,22 +36,35 @@ public class SpecGroupController {
 
 
     /**
-     * 根据分类查询规格参数
+     * 查询规格参数
      * @param gid
      * @param cid
      * @param searching
      * @return
      */
     @GetMapping("/params")
-    public ResponseEntity<List<SpecParamDTO>> querySpecParamByGid(
-            @RequestParam(value = "gid",required = false)Long gid,
-            @RequestParam(value = "cid",required = false)Long cid,
-            @RequestParam(value = "searching",required = false)boolean searching
+    public ResponseEntity<List<SpecParamDTO>> querySpecParam(
+            @RequestParam(value = "gid",required = false) Long gid,
+            @RequestParam(value = "cid",required = false) Long cid,
+            @RequestParam(value="searching",required = false) Boolean searching
             ){
 
-        List<SpecParamDTO> specParamDTO = specParamService.querySpecParamByGid(gid,cid,searching);
+        List<SpecParamDTO> specParamDTO = specService.querySpecParam(gid,cid,searching);
 
         return ResponseEntity.ok(specParamDTO);
+    }
+
+    /**
+     * 根据分类id查询规格组和组内参数
+     * @param categoryId
+     * @return
+     */
+    @GetMapping("/of/category")
+    public ResponseEntity<List<SpecGroupDTO>> queryCategoryAndParamsByCategoryId(@RequestParam("id") Long categoryId){
+
+        List<SpecGroupDTO> specGroupDTOList = specService.queryCategoryAndParamsByCategoryId(categoryId);
+
+        return ResponseEntity.ok(specGroupDTOList);
     }
 
 }

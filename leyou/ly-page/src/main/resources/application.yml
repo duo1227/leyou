@@ -1,0 +1,18 @@
+server:
+  port: 8084
+# 关闭Thymeleaf的缓存
+spring:
+  thymeleaf:
+    cache: false
+  application:
+    name: page-service
+eureka:
+  client:
+    service-url: # Eureka服务地址(集群)
+      defaultZone: http://127.0.0.1:10086/eureka #集群配置方式：defaultZone: http://127.0.0.1:8761/eureka,http://127.0.0.1:8762/eureka
+    registry-fetch-interval-seconds: 5   # 拉取注册的信息
+    instance-info-replication-interval-seconds: 5  # 实例信息替换的时间
+    initial-instance-info-replication-interval-seconds: 5
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true

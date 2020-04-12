@@ -67,14 +67,14 @@ public interface ItemClient {
 
 
     /**
-     * 根据分类查询规格参数
+     * 查询规格参数
      * @param gid 主id
      * @param cid 分类id
      * @param searching 是否搜索
      * @return
      */
     @GetMapping("/spec/params")
-    public List<SpecParamDTO> querySpecParamByGid(
+    public List<SpecParamDTO> querySpecParam(
             @RequestParam(value = "gid",required = false)Long gid,
             @RequestParam(value = "cid",required = false)Long cid,
             @RequestParam(value = "searching",required = false)boolean searching
@@ -87,4 +87,20 @@ public interface ItemClient {
      */
     @GetMapping("/brand/list")
     public List<BrandDTO> queryBrandByIds(@RequestParam("ids") List<Long> brandIds);
+
+    /**
+     * 根据spuId查询spu
+     * @param id spu的Id
+     * @return
+     */
+    @GetMapping("/spu/{id}")
+    public SpuDTO querySpuById(@PathVariable("id") Long id);
+
+    /**
+     * 根据分类id查询规格组和组内参数
+     * @param categoryId
+     * @return
+     */
+    @GetMapping("/spec/of/category")
+    public List<SpecGroupDTO> queryCategoryAndParamsByCategoryId(@RequestParam("id") Long categoryId);
 }

@@ -261,4 +261,26 @@ public class GoodsService {
 
     }
 
+    /**
+     * 根据spuId查询spu
+     * @param id spu的Id
+     * @return
+     */
+    public SpuDTO querySpuById(Long id) {
+
+        //查询spu的信息
+        Spu spu = spuMapper.selectByPrimaryKey(id);
+        if (spu == null){
+            throw new LyException(ExceptionEnum.GOODS_NOT_FOUND);
+        }
+        SpuDTO spuDTO = BeanHelper.copyProperties(spu, SpuDTO.class);
+
+        //往spuDTO加入Detail信息
+        spuDTO.setSpuDetail(querySpuDetailBySpuId(id));
+
+        //往spuDTO加入sku信息
+        spuDTO.setSkus(querySkuListBySpuId(id));
+
+        return spuDTO;
+    }
 }

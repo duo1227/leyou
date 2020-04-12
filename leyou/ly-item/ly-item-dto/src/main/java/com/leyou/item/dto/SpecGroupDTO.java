@@ -2,6 +2,8 @@ package com.leyou.item.dto;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @author 黑马程序员
  */
@@ -12,4 +14,6 @@ public class SpecGroupDTO {
     private Long cid;
 
     private String name;
+
+    private List<SpecParamDTO> params;
 }
