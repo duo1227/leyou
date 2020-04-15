@@ -9,6 +9,18 @@ spring:
     url: jdbc:mysql://192.168.13.111:3303/leyou?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
     password: passw0rd
+  rabbitmq: #rabbitmq配置
+    host: 192.168.13.111  # 你这里是本地的，但是你操作的是docker的
+    username: leyou   #这个对吗？
+    password: 123456  # 对吗？
+    virtual-host: /leyou
+    template:
+      retry:
+        enabled: true
+        initial-interval: 10000ms
+        max-interval: 80000ms
+        multiplier: 2
+    publisher-confirms: true
 mybatis:
   type-aliases-package: com.leyou.item.entity
   configuration:

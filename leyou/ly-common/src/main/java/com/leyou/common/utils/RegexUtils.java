@@ -29,4 +29,16 @@ public class RegexUtils {
         }
         return str.matches(regex);
     }
+
+    /**
+     * 判断验证码是否合法
+     * @param code
+     * @return true:合法，false：不合法
+     */
+    public static boolean isVerifyCode(String code){
+        if(StringUtils.isBlank(code)){
+            return false;
+        }
+        return code.matches(RegexPatterns.SMS_REGEX);
+    }
 }

@@ -6,6 +6,11 @@ spring:
     cache: false
   application:
     name: page-service
+  rabbitmq: #rabbitmq消费方配置
+    host: 192.168.13.111
+    username: leyou
+    password: 123456
+    virtual-host: /leyou
 eureka:
   client:
     service-url: # Eureka服务地址(集群)

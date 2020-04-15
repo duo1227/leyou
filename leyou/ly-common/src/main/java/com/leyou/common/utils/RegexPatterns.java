@@ -17,4 +17,5 @@ public abstract class RegexPatterns {
      */
     public static final String USERNAME_REGEX = "^\\w{4,32}$";
 
+    public static final String SMS_REGEX = "^\\\\d{6}$";
 }

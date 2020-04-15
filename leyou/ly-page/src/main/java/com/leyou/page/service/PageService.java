@@ -87,4 +87,24 @@ public class PageService {
             throw new LyException(ExceptionEnum.FILE_WRITER_ERROR);
         }
     }
+
+    /**
+     * 删除静态页
+     * @param spuId
+     */
+    public void deleteItemHtml(Long spuId) {
+
+        // 删除目标的文件
+        File file = new File(itemDir, spuId + ".html");
+
+        //删除目标
+        if (file.exists()){
+            boolean delete = file.delete();
+            if (!delete){
+                log.info("【静态页微服务】商品下架，往本地删除静态页，商品ID = {}",spuId);
+                throw new LyException(ExceptionEnum.DELETE_OPERATION_FAIL);
+            }
+        }
+
+    }
 }

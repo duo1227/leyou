@@ -7,6 +7,11 @@ spring:
     elasticsearch:
       cluster-name: docker-cluster # es集群的名称
       cluster-nodes: 192.168.13.111:9300 # es节点的ip和端口
+  rabbitmq: #rabbitmq消费方配置
+    host: 192.168.13.111
+    username: leyou
+    password: 123456
+    virtual-host: /leyou
 eureka:
   client:
     service-url:

@@ -14,6 +14,7 @@ import com.leyou.item.mapper.SkuMapper;
 import com.leyou.item.mapper.SpuDetailMapper;
 import com.leyou.item.mapper.SpuMapper;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,23 +23,25 @@ import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
+import static com.leyou.common.constants.MQConstants.Exchange.ITEM_EXCHANGE_NAME;
+import static com.leyou.common.constants.MQConstants.RoutingKey.ITEM_DOWN_KEY;
+import static com.leyou.common.constants.MQConstants.RoutingKey.ITEM_UP_KEY;
+
 @Service
 public class GoodsService {
 
     @Autowired
     private SpuMapper spuMapper;
-
     @Autowired
     private SpuDetailMapper spuDetailMapper;
-
     @Autowired
     private BrandService brandService;
-
     @Autowired
     private CategoryService categoryService;
-
     @Autowired
     private SkuMapper skuMapper;
+    @Autowired
+    private AmqpTemplate amqpTemplate; //发消息
 
 
     /**
@@ -171,6 +174,13 @@ public class GoodsService {
         if (count < 1){
             throw new LyException(ExceptionEnum.UPDATE_OPERATION_FAIL);
         }
+
+        // 3、上下架的操作，我们需要发送消息到队列中： 静态化服务和搜索微服务消费
+        amqpTemplate.convertAndSend(
+                ITEM_EXCHANGE_NAME,//交换机名字
+                (saleable ? ITEM_UP_KEY:ITEM_DOWN_KEY),//判断是否上下架，给routing-key
+                spuId //发送的数据
+                );
 
     }
 
