@@ -17,5 +17,8 @@ public abstract class RegexPatterns {
      */
     public static final String USERNAME_REGEX = "^\\w{4,32}$";
 
-    public static final String SMS_REGEX = "^\\\\d{6}$";
+    /**
+     * 短信验证码：正则表达式   6位数字
+     */
+    public static final String SMS_REGEX = "^\\d{6}$";
 }

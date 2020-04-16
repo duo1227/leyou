@@ -31,14 +31,11 @@ public class RegexUtils {
     }
 
     /**
-     * 判断验证码是否合法
-     * @param code
-     * @return true:合法，false：不合法
+     * 是否符合验证码
+     * @param code  验证码
+     * @return      true:符合，false：不符合
      */
-    public static boolean isVerifyCode(String code){
-        if(StringUtils.isBlank(code)){
-            return false;
-        }
-        return code.matches(RegexPatterns.SMS_REGEX);
+    public static boolean isVerifyCode(String code) {
+        return matches(code, RegexPatterns.SMS_REGEX);
     }
 }

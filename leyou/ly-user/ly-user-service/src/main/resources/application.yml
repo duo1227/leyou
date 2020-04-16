@@ -1,18 +1,20 @@
 # 配置tomcat端口号
 server:
-  port: 8080
+  port: 8085
 spring:
   application:
-    name: item-service  #应用名称(服务id)
+    name: user-service  #应用名称(服务id)
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.13.111:3303/leyou?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
     password: passw0rd
+  redis: #redis配置
+    host: 192.168.13.111
   rabbitmq: #rabbitmq提供方配置
     host: 192.168.13.111  # 你这里是本地的，但是你操作的是docker的
-    username: leyou   #这个对吗？
-    password: 123456  # 对吗？
+    username: leyou
+    password: 123456
     virtual-host: /leyou
     template:
       retry:
@@ -22,7 +24,7 @@ spring:
         multiplier: 2
     publisher-confirms: true
 mybatis:
-  type-aliases-package: com.leyou.item.entity
+  type-aliases-package: com.leyou.user.entity
   configuration:
     map-underscore-to-camel-case: true #驼峰命名
   mapper-locations: mapper/*.xml

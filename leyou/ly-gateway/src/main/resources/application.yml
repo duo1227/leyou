@@ -52,6 +52,13 @@ spring:
             - Path=/api/search/**
           filters:
             - StripPrefix=2
+        #用户微服务
+        - id: user-service # id，可以随便定义
+          uri: lb://user-service # 后面的是微服务的id，不能乱写
+          predicates:
+            - Path=/api/user/** # 路由断言映射
+          filters:
+            - StripPrefix=2  # 代表去除 api的前缀
 eureka:
   client:
     service-url: # Eureka服务地址(集群)
