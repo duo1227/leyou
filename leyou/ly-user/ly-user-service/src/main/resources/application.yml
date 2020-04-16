@@ -44,3 +44,8 @@ logging:
   level:   # debug   info   warn   error
     root: info
     com.leyou: debug
+ly:
+  encoder:
+    crypt:
+      secret: ${random.uuid} # 随机的密钥，使用uuid
+      strength: 10 # 加密强度4~31，决定了密码和盐加密时的运算次数，超过10以后加密耗时会显著增加
