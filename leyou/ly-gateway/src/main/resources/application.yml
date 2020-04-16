@@ -59,6 +59,13 @@ spring:
             - Path=/api/user/** # 路由断言映射
           filters:
             - StripPrefix=2  # 代表去除 api的前缀
+        #授权中心微服务
+        - id: auth-service # id，可以随便定义
+          uri: lb://auth-service # 后面的是微服务的id，不能乱写
+          predicates:
+            - Path=/api/auth/** # 路由断言映射
+          filters:
+            - StripPrefix=2  # 代表去除 api的前缀
 eureka:
   client:
     service-url: # Eureka服务地址(集群)
