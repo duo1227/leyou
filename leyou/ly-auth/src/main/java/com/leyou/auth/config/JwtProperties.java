@@ -25,6 +25,31 @@ public class JwtProperties implements InitializingBean {
      */
     private UserTokenProperties user = new UserTokenProperties();//一定要实例化
 
+    /**
+     * 微服务过期时间设置
+     */
+    private AppTokenProperties app = new AppTokenProperties();
+
+    @Data
+    public class AppTokenProperties{
+        /**
+         * 微服务过期时间设置,单位分钟
+         */
+        private int expire;
+
+        /**
+         * auth服务的id
+         */
+        private Long id;
+
+        /**
+         * 服务名称
+         */
+        private String name;
+
+        private String headerName;
+    }
+
     @Data
     public class UserTokenProperties {
         /**
@@ -39,6 +64,10 @@ public class JwtProperties implements InitializingBean {
          * 存放token的cookie的domain
          */
         private String cookieDomain;
+        /**
+         * 刷新时间
+         */
+        private int RefreshTime;
     }
 
     @Override

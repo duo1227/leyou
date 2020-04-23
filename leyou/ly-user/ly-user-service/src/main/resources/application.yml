@@ -49,3 +49,9 @@ ly:
     crypt:
       secret: ${random.uuid} # 随机的密钥，使用uuid
       strength: 10 # 加密强度4~31，决定了密码和盐加密时的运算次数，超过10以后加密耗时会显著增加
+  jwt:
+    pubKeyPath: C:/lesson/heima65/ssh/id_rsa.pub # 公钥地址
+    app:
+      id: 1 # 服务id
+      secret: user-service # 服务密钥，默认是服务的名称
+      headerName: privilege_token
